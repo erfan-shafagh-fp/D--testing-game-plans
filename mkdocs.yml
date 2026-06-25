@@ -1,13 +1,13 @@
 site_name: Implementation Plans
-site_url: ""
+site_url: ''
 theme:
   name: material
   palette:
     scheme: slate
     primary: indigo
 plugins:
-  - glightbox
+- glightbox
 nav:
-  - Home: index.md
-  - Plans:
-    - "(Plans will appear here)": plans/.gitkeep
+- Home: index.md
+- Plans:
+  - "Issue #4 \u2013 Player name and paddle color": plans/issue-4-plan.md
