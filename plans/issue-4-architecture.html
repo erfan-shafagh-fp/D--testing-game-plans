@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Customization Data Flow</title>
+  <link rel="stylesheet" href="../../extra.css">
+  <style>
+    .palette-chip {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin-left: 6px;
+      vertical-align: middle;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="diagram">
+    <h2 class="diagram-title">Customization Data Flow</h2>
+
+    <div class="diagram-flow-horizontal">
+      <div class="diagram-flow-node">
+        <div class="diagram-flow-label">Main Menu</div>
+        <div class="diagram-flow-sublabel">Renderer.drawMenu</div>
+      </div>
+      <div class="diagram-flow-arrow">→</div>
+      <div class="diagram-flow-node">
+        <div class="diagram-flow-label">Player Profile</div>
+        <div class="diagram-flow-sublabel">Game.playerProfile</div>
+      </div>
+      <div class="diagram-flow-arrow">→</div>
+      <div class="diagram-flow-node">
+        <div class="diagram-flow-label">Player Paddle</div>
+        <div class="diagram-flow-sublabel">Paddle.glowColor</div>
+      </div>
+    </div>
+
+    <div class="diagram-connector"></div>
+
+    <div class="diagram-flow-horizontal">
+      <div class="diagram-flow-node">
+        <div class="diagram-flow-label">Score HUD</div>
+        <div class="diagram-flow-sublabel">drawScores</div>
+      </div>
+      <div class="diagram-flow-arrow">←</div>
+      <div class="diagram-flow-node main">
+        <div class="diagram-flow-label">Profile Name + Color</div>
+        <div class="diagram-flow-sublabel">name / color</div>
+      </div>
+      <div class="diagram-flow-arrow">→</div>
+      <div class="diagram-flow-node">
+        <div class="diagram-flow-label">Game Over</div>
+        <div class="diagram-flow-sublabel">drawGameOver</div>
+      </div>
+    </div>
+
+    <div class="diagram-connector"></div>
+
+    <div class="diagram-row" style="justify-content: center; gap: 12px; margin-top: 18px;">
+      <span class="diagram-step-code">Color palette:</span>
+      <span class="diagram-step-code">Cyan<span class="palette-chip" style="background:#00f0ff"></span></span>
+      <span class="diagram-step-code">Green<span class="palette-chip" style="background:#39ff14"></span></span>
+      <span class="diagram-step-code">Yellow<span class="palette-chip" style="background:#fff01f"></span></span>
+      <span class="diagram-step-code">Purple<span class="palette-chip" style="background:#b026ff"></span></span>
+      <span class="diagram-step-code">Orange<span class="palette-chip" style="background:#ff9e00"></span></span>
+      <span class="diagram-step-code">Pink<span class="palette-chip" style="background:#ff0055"></span></span>
+    </div>
+  </div>
+</body>
+</html>

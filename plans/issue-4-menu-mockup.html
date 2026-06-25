@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Main Menu Customization Mockup</title>
+  <link rel="stylesheet" href="../../extra.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap');
+
+    body {
+      margin: 0;
+      background: #050510;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Orbitron', monospace;
+    }
+
+    .mockup {
+      width: 900px;
+      height: 600px;
+      background: radial-gradient(circle at center, rgba(0,240,255,0.04) 0%, rgba(5,5,16,1) 70%), #050510;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(0,240,255,0.15);
+    }
+
+    /* Grid background */
+    .mockup::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,240,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,240,255,0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    .title {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 72px;
+      font-weight: 900;
+      color: #ffffff;
+      text-shadow: 0 0 32px #00f0ff, 0 0 64px rgba(0,240,255,0.5);
+      letter-spacing: 6px;
+    }
+
+    .section-label {
+      position: absolute;
+      top: 160px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 18px;
+      color: #00f0ff;
+      text-shadow: 0 0 10px #00f0ff;
+    }
+
+    .input-box {
+      position: absolute;
+      top: 196px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 320px;
+      height: 48px;
+      border: 2px solid rgba(0,240,255,0.55);
+      border-radius: 8px;
+      background: rgba(0,240,255,0.06);
+      box-shadow: 0 0 20px rgba(0,240,255,0.2), inset 0 0 12px rgba(0,240,255,0.08);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 22px;
+      color: #ffffff;
+    }
+
+    .caret {
+      display: inline-block;
+      width: 2px;
+      height: 24px;
+      background: #00f0ff;
+      margin-left: 2px;
+      box-shadow: 0 0 8px #00f0ff;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
+
+    .swatch-row {
+      position: absolute;
+      top: 270px;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+    }
+
+    .swatch {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.35);
+      box-shadow: 0 0 14px currentColor;
+      position: relative;
+    }
+
+    .swatch.selected::after {
+      content: '';
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 12px currentColor;
+    }
+
+    .button {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 280px;
+      height: 58px;
+      border: 2px solid rgba(0,240,255,0.55);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 0 12px currentColor;
+      box-shadow: 0 0 20px rgba(0,240,255,0.18), inset 0 0 20px rgba(0,240,255,0.08);
+      background: linear-gradient(180deg, rgba(0,240,255,0.14) 0%, rgba(0,240,255,0.04) 100%);
+    }
+
+    .button-start { top: 350px; border-color: rgba(240,232,0,0.7); box-shadow: 0 0 22px rgba(240,232,0,0.22); }
+    .button-settings { top: 430px; }
+
+    .hint {
+      position: absolute;
+      top: 510px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 16px;
+      color: #8888aa;
+    }
+
+    .corner-accent {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-color: #00f0ff;
+      border-style: solid;
+      box-shadow: 0 0 10px #00f0ff;
+    }
+    .tl { top: 20px; left: 20px; border-width: 3px 0 0 3px; }
+    .tr { top: 20px; right: 20px; border-width: 3px 3px 0 0; }
+    .bl { bottom: 20px; left: 20px; border-width: 0 0 3px 3px; }
+    .br { bottom: 20px; right: 20px; border-width: 0 3px 3px 0; }
+  </style>
+</head>
+<body>
+  <div class="mockup">
+    <div class="corner-accent tl"></div>
+    <div class="corner-accent tr"></div>
+    <div class="corner-accent bl"></div>
+    <div class="corner-accent br"></div>
+
+    <div class="title">CYBER PONG</div>
+    <div class="section-label">PLAYER NAME</div>
+
+    <div class="input-box">
+      NEON<span class="caret"></span>
+    </div>
+
+    <div class="swatch-row">
+      <div class="swatch selected" style="color: #00f0ff; background: #00f0ff;"></div>
+      <div class="swatch" style="color: #39ff14; background: #39ff14;"></div>
+      <div class="swatch" style="color: #fff01f; background: #fff01f;"></div>
+      <div class="swatch" style="color: #b026ff; background: #b026ff;"></div>
+      <div class="swatch" style="color: #ff9e00; background: #ff9e00;"></div>
+      <div class="swatch" style="color: #ff0055; background: #ff0055;"></div>
+    </div>
+
+    <div class="button button-start">START GAME</div>
+    <div class="button button-settings">SETTINGS</div>
+
+    <div class="hint">or press SPACE · W/S or ↑/↓ to move · Mouse/Touch · ESC/P to pause</div>
+  </div>
+</body>
+</html>

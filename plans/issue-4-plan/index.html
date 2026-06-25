@@ -1,0 +1,890 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Issue #4 – Player name and paddle color - Implementation Plans</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#issue-4-add-player-name-input-and-paddle-color-customization-to-main-menu" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Implementation Plans" class="md-header__button md-logo" aria-label="Implementation Plans" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Implementation Plans
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Issue #4 – Player name and paddle color
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Implementation Plans" class="md-nav__button md-logo" aria-label="Implementation Plans" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"></path></svg>
+
+    </a>
+    Implementation Plans
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked="">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Plans
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Plans
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issue #4 – Player name and paddle color
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Issue #4 – Player name and paddle color
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-cause-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root Cause Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Solution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-to-modify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Files to Modify
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks-mitigations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risks &amp; Mitigations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrams
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagrams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture / Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-menu-mockup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Menu Mockup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menu-interaction-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menu Interaction Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-cause-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Root Cause Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proposed-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed Solution
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#files-to-modify" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Files to Modify
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Files
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-steps" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Implementation Steps
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Test Strategy
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#risks-mitigations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Risks &amp; Mitigations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Diagrams
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diagrams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#architecture-data-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Architecture / Data Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#main-menu-mockup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Main Menu Mockup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#menu-interaction-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Menu Interaction Flow
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="issue-4-add-player-name-input-and-paddle-color-customization-to-main-menu">Issue #4: Add player name input and paddle color customization to main menu</h1>
+<h2 id="summary">Summary</h2>
+<p>Add a canvas-based player name input field and a row of neon color swatches to the main menu. The chosen name and color must flow through to the player paddle glow, the in-game score label/number, and the game-over winner text. The CPU opponent keeps its default "CPU" name and magenta color.</p>
+<h2 id="root-cause-analysis">Root Cause Analysis</h2>
+<p>This is a feature request, not a bug. The current codebase has no concept of a player profile:</p>
+<ul>
+<li>The player paddle hard-codes <code>glowColor = '#00f0ff'</code> in the <code>Paddle</code> constructor.</li>
+<li>The score labels are hard-coded as <code>'PLAYER'</code> and <code>'CPU'</code>.</li>
+<li>The game-over winner text always renders <code>'PLAYER WINS'</code> or <code>'CPU WINS'</code>.</li>
+<li>The main menu only shows the title, <strong>START GAME</strong>, and <strong>SETTINGS</strong> buttons with no customization UI.</li>
+<li>There is no text-input abstraction in the renderer or input manager.</li>
+</ul>
+<blockquote>
+<p><strong>Note on file layout:</strong> Issue #4 mentions <code>src/paddle.js</code>, but the current codebase defines <code>Paddle</code> as a local class inside <code>src/game.js</code>. The plan below targets the actual files in the repo.</p>
+</blockquote>
+<h2 id="proposed-solution">Proposed Solution</h2>
+<p>Introduce a lightweight <code>playerProfile</code> object on the <code>Game</code> instance with <code>name</code> and <code>color</code> properties. Expose a small neon palette and render the input field plus swatches inside the existing <code>drawMenu</code> routine. Wire keyboard and pointer events so the player can type a name, pick a color, and see those choices reflected immediately when the game starts.</p>
+<h2 id="files-to-modify">Files to Modify</h2>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Change</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>src/game.js</code></td>
+<td>Add <code>playerProfile</code> to <code>Game</code>; pass profile color into <code>Paddle</code>; handle menu input focus, typing, and swatch selection; use profile name for game-over winner text.</td>
+</tr>
+<tr>
+<td><code>src/renderer.js</code></td>
+<td>Render name input box, caret, and color swatches in <code>drawMenu</code>; update <code>drawScores</code> to use profile name/color; update <code>drawGameOver</code> winner text; add hit-testing for input and swatches.</td>
+</tr>
+<tr>
+<td><code>src/input.js</code></td>
+<td>(Optional) expose a helper for printable key detection; the current <code>isKeyPressed</code> API is sufficient.</td>
+</tr>
+<tr>
+<td><code>tests/dag-runs/create-game-foundation-h-6cf064/T1/game.test.js</code></td>
+<td>Add tests for profile defaults, name typing, color selection, paddle color propagation, and winner name.</td>
+</tr>
+<tr>
+<td><code>tests/dag-runs/create-game-foundation-h-6cf064/T1/renderer.test.js</code></td>
+<td>Add tests verifying menu customization elements are drawn and scores use profile values.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="new-files">New Files</h2>
+<p>No new source files are required; all changes fit inside the existing modules. Diagram assets generated for this plan are committed alongside the markdown.</p>
+<h2 id="implementation-steps">Implementation Steps</h2>
+<ol>
+<li><strong>Create the player profile model</strong></li>
+<li>Add <code>this.playerProfile = { name: 'PLAYER', color: '#00f0ff' }</code> in the <code>Game</code> constructor.</li>
+<li>
+<p>Define a constant neon palette (e.g., cyan <code>#00f0ff</code>, green <code>#39ff14</code>, yellow <code>#fff01f</code>, purple <code>#b026ff</code>, orange <code>#ff9e00</code>, pink <code>#ff0055</code>).</p>
+</li>
+<li>
+<p><strong>Teach Paddle to use a custom color</strong></p>
+</li>
+<li>Extend the <code>Paddle</code> constructor signature with an optional <code>color</code> argument.</li>
+<li>Use <code>color ?? (isPlayer ? '#00f0ff' : '#ff0055')</code> for <code>glowColor</code>.</li>
+<li>
+<p>In <code>Game.resetPositions</code>, pass <code>this.playerProfile.color</code> when constructing the player paddle.</p>
+</li>
+<li>
+<p><strong>Render the customization UI on the main menu</strong></p>
+</li>
+<li>In <code>Renderer.drawMenu</code>, draw:<ul>
+<li>A "PLAYER NAME" label.</li>
+<li>A rounded neon input box centered under the title.</li>
+<li>The current name inside the box with a blinking caret when active.</li>
+<li>A row of circular color swatches below the input.</li>
+</ul>
+</li>
+<li>
+<p>Store swatch bounds so hit-testing can identify them.</p>
+</li>
+<li>
+<p><strong>Add hit-testing for menu controls</strong></p>
+</li>
+<li>Extend <code>Renderer</code> to expose <code>getMenuInputBounds()</code> and <code>getSwatchAt(x, y)</code>.</li>
+<li>
+<p>Keep the existing <code>getButtonAt</code> behavior unchanged for buttons.</p>
+</li>
+<li>
+<p><strong>Wire input focus and typing in Game.update</strong></p>
+</li>
+<li>Track a new <code>menuFocus</code> state: <code>'none'</code>, <code>'name-input'</code>.</li>
+<li>On pointer click:<ul>
+<li>Inside input box → activate focus.</li>
+<li>On a swatch → set <code>playerProfile.color</code>, update paddle glow, and flash the swatch.</li>
+<li>Outside input → deactivate focus.</li>
+</ul>
+</li>
+<li>When focus is on the name input, consume printable keys and append them to <code>playerProfile.name</code>; handle <code>Backspace</code>; limit length to ~12 characters.</li>
+<li>
+<p>Deactivate on <code>Enter</code> or <code>Escape</code>; trim whitespace; if empty, reset to <code>'PLAYER'</code>.</p>
+</li>
+<li>
+<p><strong>Reflect profile in scores and game-over screen</strong></p>
+</li>
+<li>In <code>Renderer.drawScores</code>, replace hard-coded <code>'PLAYER'</code> with <code>game.playerProfile.name</code> and use <code>game.playerProfile.color</code> for the score number glow.</li>
+<li>
+<p>In <code>Renderer.drawGameOver</code>, when the player wins, use <code>game.playerProfile.name</code> and <code>game.playerProfile.color</code>.</p>
+</li>
+<li>
+<p><strong>Preserve profile across game restarts</strong></p>
+</li>
+<li>Ensure <code>resetPositions</code> re-applies the profile color to the newly created player paddle.</li>
+<li>
+<p>Do not reset the profile when restarting after game-over.</p>
+</li>
+<li>
+<p><strong>Add tests</strong></p>
+</li>
+<li>Verify default profile values.</li>
+<li>Simulate typing and confirm <code>playerProfile.name</code> updates.</li>
+<li>Simulate swatch click and confirm paddle <code>glowColor</code> changes.</li>
+<li>Verify renderer draws the input box and swatches in <code>MENU</code> state.</li>
+<li>Verify score label uses the custom name.</li>
+</ol>
+<h2 id="test-strategy">Test Strategy</h2>
+<ul>
+<li><strong>Unit tests (game.test.js)</strong></li>
+<li><code>playerProfile</code> defaults to <code>name === 'PLAYER'</code> and <code>color === '#00f0ff'</code>.</li>
+<li>Typing characters updates <code>playerProfile.name</code> while the input is focused.</li>
+<li><code>Backspace</code> removes the last character.</li>
+<li>Empty name resets to <code>'PLAYER'</code> on deactivation.</li>
+<li>Selecting a swatch updates <code>playerProfile.color</code> and the player paddle <code>glowColor</code>.</li>
+<li>
+<p>Game-over winner text uses the player profile name.</p>
+</li>
+<li>
+<p><strong>Renderer tests (renderer.test.js)</strong></p>
+</li>
+<li><code>drawMenu</code> renders the input box and swatches.</li>
+<li><code>drawScores</code> uses <code>game.playerProfile.name</code> for the player label and <code>game.playerProfile.color</code> for the score glow.</li>
+<li>
+<p><code>getSwatchAt</code> returns the correct color for a pointer position inside a swatch.</p>
+</li>
+<li>
+<p><strong>Edge cases</strong></p>
+</li>
+<li>Name longer than 12 characters is truncated or clipped.</li>
+<li>Touch devices: swatches must be at least 40 px in diameter.</li>
+<li>Focus state does not leak into gameplay (input consumed only in <code>MENU</code>).</li>
+<li>Color choice persists after <code>ESC</code> pause/resume and after game-over restart.</li>
+</ul>
+<h2 id="risks-mitigations">Risks &amp; Mitigations</h2>
+<table>
+<thead>
+<tr>
+<th>Risk</th>
+<th>Mitigation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Canvas text input is more complex than a DOM input.</td>
+<td>Keep it simple: no selection, single-line, basic blinking caret, max length.</td>
+</tr>
+<tr>
+<td>Swatches may be hard to tap on phones.</td>
+<td>Render each swatch at ≥ 40 px with ≥ 12 px gaps; scale on small viewports.</td>
+</tr>
+<tr>
+<td>Existing menu layout could become crowded.</td>
+<td>Place input and swatches between the title and the <strong>START GAME</strong> button; reduce title margin if needed.</td>
+</tr>
+<tr>
+<td>Profile color may not propagate after <code>resetPositions</code>.</td>
+<td>Always pass <code>this.playerProfile.color</code> when constructing the player paddle.</td>
+</tr>
+<tr>
+<td>Breaking existing settings/tests.</td>
+<td>Run the existing test suite after changes; keep Settings screen untouched.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="diagrams">Diagrams</h2>
+<h3 id="architecture-data-flow">Architecture / Data Flow</h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../issue-4-architecture.png" data-desc-position="bottom"><img alt="Customization Data Flow" src="../issue-4-architecture.png"></a></p>
+<p>The player's name and color choice live in <code>Game.playerProfile</code>. The renderer reads those values to draw the menu, scores, and game-over screen. <code>Game.resetPositions</code> pushes the chosen color into the player <code>Paddle</code> instance so the paddle glow updates for every match.</p>
+<h3 id="main-menu-mockup">Main Menu Mockup</h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../issue-4-menu-mockup.png" data-desc-position="bottom"><img alt="Main Menu Mockup" src="../issue-4-menu-mockup.png"></a></p>
+<p>The mockup shows the title moved up slightly to make room for the "PLAYER NAME" label, the neon-outlined input box with a blinking caret, the color swatch row, and the existing <strong>START GAME</strong> / <strong>SETTINGS</strong> buttons below.</p>
+<h3 id="menu-interaction-flow">Menu Interaction Flow</h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../issue-4-menu-flow.png" data-desc-position="bottom"><img alt="Menu Interaction Flow" src="../issue-4-menu-flow.png"></a></p>
+<p>This flowchart shows how pointer and keyboard events are routed in <code>MENU</code> state: focus the input, type or backspace, pick a swatch, and start the game with the selected identity.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu Interaction Flow</title>
+  <link rel="stylesheet" href="../../extra.css">
+  <style>
+    .flow-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      margin: 14px 0;
+      flex-wrap: wrap;
+    }
+    .flow-box {
+      min-width: 150px;
+      padding: 14px 18px;
+      border-radius: 8px;
+      text-align: center;
+      font-size: 14px;
+      color: #ffffff;
+      border: 2px solid;
+      background: rgba(255,255,255,0.05);
+    }
+    .flow-box.start { border-color: #00f0ff; box-shadow: 0 0 18px rgba(0,240,255,0.25); }
+    .flow-box.decision { border-color: #f0e800; box-shadow: 0 0 18px rgba(240,232,0,0.2); border-radius: 30px; }
+    .flow-box.action { border-color: #b026ff; box-shadow: 0 0 14px rgba(176,38,255,0.2); }
+    .flow-box.result { border-color: #39ff14; box-shadow: 0 0 14px rgba(57,255,20,0.2); }
+    .arrow {
+      color: #8888aa;
+      font-size: 22px;
+    }
+    .label {
+      color: #aaaaee;
+      font-size: 12px;
+      font-family: 'Share Tech Mono', monospace;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="diagram">
+    <h2 class="diagram-title">Menu Interaction Flow</h2>
+
+    <div class="flow-row">
+      <div class="flow-box start">MENU state</div>
+      <div class="arrow">→</div>
+      <div class="flow-box decision">Pointer clicked?</div>
+    </div>
+
+    <div class="flow-row">
+      <div class="flow-box action">Focus name input</div>
+      <div class="flow-box action">Set playerProfile.color</div>
+      <div class="flow-box action">Existing button logic</div>
+      <div class="flow-box action">Blur input</div>
+    </div>
+    <div class="flow-row" style="gap: 80px;">
+      <div class="label">Input box</div>
+      <div class="label">Color swatch</div>
+      <div class="label">Start / Settings</div>
+      <div class="label">Outside input</div>
+    </div>
+
+    <div class="flow-row">
+      <div class="flow-box decision">Key pressed?</div>
+    </div>
+
+    <div class="flow-row">
+      <div class="flow-box action">Append to name</div>
+      <div class="flow-box action">Remove last char</div>
+      <div class="flow-box action">Blur input</div>
+    </div>
+    <div class="flow-row" style="gap: 90px;">
+      <div class="label">Printable</div>
+      <div class="label">Backspace</div>
+      <div class="label">Enter / Escape</div>
+    </div>
+
+    <div class="flow-row">
+      <div class="flow-box action">Update Paddle.glowColor</div>
+      <div class="arrow">→</div>
+      <div class="flow-box result">Start game</div>
+    </div>
+  </div>
+</body>
+</html>
